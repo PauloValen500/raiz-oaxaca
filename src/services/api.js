@@ -34,14 +34,27 @@ export async function crearProducto(data) {
   return res.json();
 }
 
-export async function editarProducto(data) {
-  const res = await fetch(`${API_URL}/producto`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
+export const editarProducto = async (id, data) => {
+  console.log("EDITANDO ID:", id);
+  console.log("URL:", `${API_URL}/producto/${id}`);
+  const res = await fetch(
+    `${API_URL}/producto/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("Error al editar producto");
+  }
+
   return res.json();
-}
+};
+
 
 export async function eliminarProducto(id_producto) {
   const res = await fetch(`${API_URL}/producto`, {

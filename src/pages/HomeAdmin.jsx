@@ -45,17 +45,24 @@ export default function HomeAdmin() {
   };
 
   const abrirEditar = (producto) => {
+    if (!producto?.id_producto) {
+      alert("Producto inválido para editar");
+      return;
+    }
+
     setForm({
-      id_producto: producto.id_producto,
+      id_producto: Number(producto.id_producto),
       nombre: producto.nombre,
       descripcion: producto.descripcion,
       precio: producto.precio,
       stock: producto.stock,
       imagen: ""
     });
+
     setModoEditar(true);
     setMostrarModal(true);
   };
+
 
   const limpiarFormulario = () => {
     setForm({
@@ -66,8 +73,10 @@ export default function HomeAdmin() {
       stock: "",
       imagen: ""
     });
+
     setModoEditar(false);
   };
+
 
   const convertirImagenBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -94,19 +103,33 @@ export default function HomeAdmin() {
       };
 
       if (modoEditar) {
-        await editarProducto(form.id_producto, data);
+        // 🔴 BLOQUEO DEFINITIVO DE PUT SIN ID
+        if (!form.id_producto || isNaN(form.id_producto)) {
+          alert("ID del producto no válido. Intenta de nuevo.");
+          return;
+        }
+
+        console.log(
+          "PUT →",
+          `/producto/${form.id_producto}`
+        );
+
+        await editarProducto(Number(form.id_producto), data);
       } else {
         if (!form.imagen) {
           alert("Selecciona una imagen");
           return;
         }
+
         await crearProducto(data);
       }
 
       setMostrarModal(false);
       limpiarFormulario();
       cargarProductos();
+
     } catch (err) {
+      console.error(err);
       alert("Error al guardar producto");
     }
   };
