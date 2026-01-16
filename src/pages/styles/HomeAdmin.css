@@ -28,30 +28,65 @@
 ================================ */
 .admin-navbar {
   background: var(--card-bg);
-  padding: 14px 28px;
-  display: flex;
+  padding: 16px 32px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 4px 16px rgba(30, 58, 95, 0.08);
+  box-shadow: 0 6px 22px rgba(30, 58, 95, 0.12);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
+
 /* Marca */
-.navbar-brand {
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  /* separación REAL icono-texto */
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.nav-left svg {
+  font-size: 2.2rem;
+  color: var(--secondary);
+}
+
+.nav-center {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.3px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.logout-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.95rem;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--primary);
-  white-space: nowrap;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-.brand-icon {
-  font-size: 1.3rem;
-  color: var(--secondary);
+.logout-btn svg {
+  font-size: 1.2rem;
+}
+
+.logout-btn:hover {
+  color: var(--danger);
 }
 
 .navbar-actions {
@@ -302,6 +337,7 @@
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -312,11 +348,26 @@
    RESPONSIVE
 ================================ */
 @media (max-width: 768px) {
-  .admin-navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 14px 20px;
+  @media (max-width: 768px) {
+    .admin-navbar {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 16px 20px;
+      text-align: center;
+    }
+
+    .nav-left {
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .nav-center {
+      display: none;
+    }
+
+    .nav-right {
+      justify-content: center;
+    }
   }
 
   .navbar-actions {
@@ -344,4 +395,3 @@
     font-size: 0.9rem;
   }
 }
-
