@@ -21,6 +21,69 @@
   padding: 40px 30px;
 }
 
+.admin-navbar {
+  background: var(--card-bg);
+  padding: 16px 32px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  box-shadow: 0 6px 22px rgba(30, 58, 95, 0.12);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+
+/* Marca */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  /* separación REAL icono-texto */
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.nav-left svg {
+  font-size: 2.2rem;
+  color: var(--secondary);
+}
+
+.nav-center {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.3px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.logout-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.logout-btn svg {
+  font-size: 1.2rem;
+}
+
+.logout-btn:hover {
+  color: var(--danger);
+}
+
 /* ================================
    HEADER
 ================================ */
@@ -155,4 +218,32 @@
 .out-stock {
   background-color: #fee2e2;
   color: #991b1b;
+}
+
+@media (max-width: 768px) {
+  .admin-navbar {
+    grid-template-columns: auto 1fr auto;
+    padding: 14px 18px;
+  }
+
+  .nav-left {
+    font-size: 1.2rem;
+  }
+
+  .nav-center {
+    display: none;
+  }
+
+  .nav-right {
+    justify-self: end;
+  }
+
+  .logout-text {
+    display: none;
+  }
+
+  .logout-btn {
+    font-size: 1.3rem;
+    padding: 6px;
+  }
 }

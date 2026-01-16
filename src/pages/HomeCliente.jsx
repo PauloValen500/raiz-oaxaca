@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { obtenerProductos } from "../services/api";
+import { MdLogout } from "react-icons/md";
+import { FaStore } from "react-icons/fa";
 import "./styles/HomeCliente.css";
 
 export default function HomeCliente() {
@@ -22,6 +24,11 @@ export default function HomeCliente() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("usuario");
+    window.location.href = "/login";
+  };
+
   if (loading) {
     return <p className="catalog-loading">Cargando catálogo...</p>;
   }
@@ -32,7 +39,24 @@ export default function HomeCliente() {
 
   return (
     <div id="cliente-container">
+      {/* NAVBAR */}
+      <nav className="admin-navbar">
+        <div className="nav-left">
+          <FaStore />
+          <span>Raíz Oaxaca</span>
+        </div>
 
+        <div className="nav-center">
+          Panel de Administración
+        </div>
+
+        <div className="nav-right">
+          <button className="logout-btn" onClick={handleLogout}>
+            <MdLogout />
+            <span className="logout-text">Cerrar sesión</span>
+          </button>
+        </div>
+      </nav>
       <header className="catalog-header">
         <h1 className="catalog-title">Catálogo Raíz Oaxaca</h1>
         <p className="catalog-subtitle">
