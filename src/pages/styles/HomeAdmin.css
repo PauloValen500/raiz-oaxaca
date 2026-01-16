@@ -349,15 +349,12 @@
 ================================ */
 @media (max-width: 768px) {
   .admin-navbar {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 16px 20px;
-    text-align: center;
+    grid-template-columns: auto 1fr auto;
+    padding: 14px 18px;
   }
 
   .nav-left {
-    justify-content: center;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
   }
 
   .nav-center {
@@ -365,17 +362,16 @@
   }
 
   .nav-right {
-    justify-content: center;
+    justify-self: end;
   }
 
   .logout-text {
     display: none;
   }
 
-  .navbar-actions {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  .logout-btn {
+    font-size: 1.3rem;
+    padding: 6px;
   }
 
   /* FAB estilo móvil */
@@ -391,9 +387,5 @@
 
   .add-product-btn span {
     display: none;
-  }
-
-  .logout-btn {
-    font-size: 1.25rem;
   }
 }
