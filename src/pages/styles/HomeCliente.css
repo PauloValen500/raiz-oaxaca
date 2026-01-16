@@ -48,14 +48,6 @@
   color: var(--secondary-color);
 }
 
-.nav-center {
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text-color);
-  letter-spacing: 0.4px;
-}
-
 .nav-right {
   display: flex;
   align-items: center;
@@ -234,10 +226,6 @@
 
   .nav-left svg {
     font-size: 2.1rem;
-  }
-
-  .nav-center {
-    display: none;
   }
 
   .nav-right {

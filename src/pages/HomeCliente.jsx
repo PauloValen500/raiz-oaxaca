@@ -46,10 +46,6 @@ export default function HomeCliente() {
           <span>Raíz Oaxaca</span>
         </div>
 
-        <div className="nav-center">
-          Panel de Administración
-        </div>
-
         <div className="nav-right">
           <button className="logout-btn" onClick={handleLogout}>
             <MdLogout />
