@@ -1,16 +1,23 @@
 /* ================================
+   RESET GLOBAL
+================================ */
+* {
+  box-sizing: border-box;
+}
+
+/* ================================
    VARIABLES GLOBALES (Raíz Oaxaca)
 ================================ */
 :root {
-  --primary-color: #1e3a5f;      /* Azul profundo */
-  --secondary-color: #2fa4a9;    /* Verde jade */
-  --background-color: #f2f6f9;   /* Gris claro */
+  --primary-color: #1e3a5f;
+  --secondary-color: #2fa4a9;
+  --background-color: #f2f6f9;
   --card-bg: #ffffff;
   --text-color: #1f2933;
   --muted-text: #6b7280;
   --error-color: #dc2626;
   --success-color: #16a34a;
-  --border-radius: 14px;
+  --border-radius: 16px;
   --transition: all 0.3s ease;
 }
 
@@ -19,11 +26,15 @@
 ================================ */
 #signup-container {
   min-height: 100vh;
-  background-color: var(--background-color);
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 95, 0.08),
+    rgba(47, 164, 169, 0.15)
+  );
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 16px;
 }
 
 /* ================================
@@ -33,10 +44,10 @@
   background-color: var(--card-bg);
   width: 100%;
   max-width: 520px;
-  padding: 45px 45px;
+  padding: 42px 40px;
   border-radius: var(--border-radius);
-  box-shadow: 0 25px 50px rgba(30, 58, 95, 0.15);
-  animation: fadeInScale 0.6s ease;
+  box-shadow: 0 30px 60px rgba(30, 58, 95, 0.18);
+  animation: fadeInUp 0.7s ease;
 }
 
 /* ================================
@@ -44,18 +55,17 @@
 ================================ */
 .signup-title {
   font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--secondary-color);
+  font-weight: 800;
+  color: var(--primary-color);
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .signup-subtitle {
   text-align: center;
-  color: var(--primary-color);
-  font-size: 1rem;
-  font-weight: 500;
-  margin-bottom: 35px;
+  color: var(--muted-text);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
 }
 
 /* ================================
@@ -64,97 +74,115 @@
 .signup-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
+/* ================================
+   INPUT CON ICONOS
+================================ */
 .input-group {
+  display: flex;
+  align-items: center;
   width: 100%;
+  gap: 12px;
+  padding: 14px 16px;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  transition: var(--transition);
 }
 
+.input-group:focus-within {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(47, 164, 169, 0.25);
+  transform: translateY(-1px);
+}
+
+.input-icon {
+  font-size: 1.35rem;
+  color: var(--muted-text);
+}
+
+/* ================================
+   INPUT
+================================ */
 .signup-input {
-  width: 100%;
-  padding: 15px 16px;
-  font-size: 1rem;
-  border-radius: 10px;
-  border: 1px solid #cbd5e1;
+  flex: 1;
+  border: none;
   outline: none;
-  transition: var(--transition);
-  background-color: #f9fafb;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  background: transparent;
 }
 
 .signup-input::placeholder {
-  color: #94a3b8;
-}
-
-.signup-input:focus {
-  background-color: #ffffff;
-  border-color: var(--secondary-color);
-  box-shadow: 0 0 0 3px rgba(47, 164, 169, 0.18);
+  color: #9ca3af;
 }
 
 /* ================================
    MENSAJES
 ================================ */
+.signup-error,
+.signup-success {
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 .signup-error {
   background-color: #fee2e2;
   color: var(--error-color);
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  text-align: center;
 }
 
 .signup-success {
   background-color: #dcfce7;
   color: var(--success-color);
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  text-align: center;
 }
 
 /* ================================
    BOTÓN
 ================================ */
 .signup-button {
-  margin-top: 15px;
+  margin-top: 14px;
   padding: 15px;
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #ffffff;
-  background-color: var(--secondary-color);
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   transition: var(--transition);
 }
 
 .signup-button:hover {
-  background-color: #249094;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(47, 164, 169, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(47, 164, 169, 0.35);
 }
 
 .signup-button:active {
-  transform: translateY(0);
-  box-shadow: none;
+  transform: scale(0.97);
 }
 
 /* ================================
    FOOTER
 ================================ */
 .signup-footer {
-  margin-top: 30px;
+  margin-top: 26px;
   text-align: center;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--muted-text);
 }
 
 .signup-link {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   font-weight: 600;
   text-decoration: none;
-  transition: var(--transition);
 }
 
 .signup-link:hover {
@@ -164,13 +192,30 @@
 /* ================================
    ANIMACIÓN
 ================================ */
-@keyframes fadeInScale {
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 480px) {
+  .signup-card {
+    padding: 30px 24px;
+  }
+
+  .signup-title {
+    font-size: 1.7rem;
+  }
+
+  .signup-subtitle {
+    font-size: 0.88rem;
   }
 }

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { login } from "../services/api";
+import { MdEmail, MdLock } from "react-icons/md";
 import "./styles/Login.css";
-
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -43,13 +43,13 @@ export default function Login() {
       <div className="login-card">
 
         <h1 className="login-title">Raíz Oaxaca</h1>
-        <p className="login-subtitle">
-          Accede a tu cuenta
-        </p>
+        <p className="login-subtitle">Accede a tu cuenta</p>
 
         <div className="login-form">
 
+          {/* EMAIL */}
           <div className="input-group">
+            <MdEmail className="input-icon" />
             <input
               type="email"
               className="login-input"
@@ -59,7 +59,9 @@ export default function Login() {
             />
           </div>
 
+          {/* PASSWORD */}
           <div className="input-group">
+            <MdLock className="input-icon" />
             <input
               type="password"
               className="login-input"
@@ -69,16 +71,9 @@ export default function Login() {
             />
           </div>
 
-          {error && (
-            <p className="login-error">
-              {error}
-            </p>
-          )}
+          {error && <p className="login-error">{error}</p>}
 
-          <button
-            className="login-button"
-            onClick={handleLogin}
-          >
+          <button className="login-button" onClick={handleLogin}>
             Iniciar sesión
           </button>
 
