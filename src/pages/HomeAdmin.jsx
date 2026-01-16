@@ -165,7 +165,7 @@ export default function HomeAdmin() {
         <div className="nav-right">
           <button className="logout-btn" onClick={handleLogout}>
             <MdLogout />
-            Cerrar sesión
+            <span className="logout-text">Cerrar sesión</span>
           </button>
         </div>
       </nav>
