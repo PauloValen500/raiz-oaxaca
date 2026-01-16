@@ -5,6 +5,15 @@ import {
   editarProducto,
   eliminarProducto
 } from "../services/api";
+import {
+  MdAdd,
+  MdEdit,
+  MdDelete,
+  MdLogout,
+  MdInventory,
+  MdAttachMoney
+} from "react-icons/md";
+import { FaStore } from "react-icons/fa";
 import "./styles/HomeAdmin.css";
 
 export default function HomeAdmin() {
@@ -63,7 +72,6 @@ export default function HomeAdmin() {
     setMostrarModal(true);
   };
 
-
   const limpiarFormulario = () => {
     setForm({
       id_producto: null,
@@ -73,10 +81,8 @@ export default function HomeAdmin() {
       stock: "",
       imagen: ""
     });
-
     setModoEditar(false);
   };
-
 
   const convertirImagenBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -103,40 +109,29 @@ export default function HomeAdmin() {
       };
 
       if (modoEditar) {
-        // 🔴 BLOQUEO DEFINITIVO DE PUT SIN ID
         if (!form.id_producto || isNaN(form.id_producto)) {
-          alert("ID del producto no válido. Intenta de nuevo.");
+          alert("ID del producto no válido");
           return;
         }
-
-        console.log(
-          "PUT →",
-          `/producto/${form.id_producto}`
-        );
-
         await editarProducto(Number(form.id_producto), data);
       } else {
         if (!form.imagen) {
           alert("Selecciona una imagen");
           return;
         }
-
         await crearProducto(data);
       }
 
       setMostrarModal(false);
       limpiarFormulario();
       cargarProductos();
-
     } catch (err) {
-      console.error(err);
       alert("Error al guardar producto");
     }
   };
 
   const handleEliminar = async (id) => {
     if (!window.confirm("¿Eliminar este producto?")) return;
-
     try {
       await eliminarProducto(id);
       cargarProductos();
@@ -145,22 +140,49 @@ export default function HomeAdmin() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("usuario");
+    window.location.href = "/login";
+  };
+
   if (loading) return <p className="admin-loading">Cargando panel...</p>;
   if (error) return <p className="admin-error">{error}</p>;
 
   return (
     <div id="admin-container">
 
-      <header className="admin-header">
-        <h1>Panel de Administración</h1>
-        <button className="admin-add-btn" onClick={abrirCrear}>
-          + Agregar producto
-        </button>
-      </header>
+      {/* NAVBAR */}
+      <nav className="admin-navbar">
+        <div className="nav-left">
+          <FaStore />
+          <span>Raíz Oaxaca</span>
+        </div>
 
+        <div className="nav-center">
+          Panel de Administración
+        </div>
+
+        <div className="nav-right">
+          <button className="logout-btn" onClick={handleLogout}>
+            <MdLogout />
+            Cerrar sesión
+          </button>
+        </div>
+      </nav>
+
+      {/* ACTION BAR */}
+      <div className="admin-actions-bar">
+        <button className="admin-add-btn" onClick={abrirCrear}>
+          <MdAdd />
+          Nuevo producto
+        </button>
+      </div>
+
+      {/* GRID */}
       <div className="admin-grid">
         {productos.map(p => (
           <div className="admin-card" key={p.id_producto}>
+
             <div className="admin-img-container">
               <img src={p.imagen_url} alt={p.nombre} />
             </div>
@@ -168,16 +190,29 @@ export default function HomeAdmin() {
             <div className="admin-info">
               <h3>{p.nombre}</h3>
               <p className="admin-desc">{p.descripcion}</p>
-              <p className="admin-price">${p.precio}</p>
-              <p className="admin-stock">Stock: {p.stock}</p>
+
+              <p className="admin-price">
+                <MdAttachMoney /> {p.precio}
+              </p>
+
+              <p className="admin-stock">
+                <MdInventory /> Stock: {p.stock}
+              </p>
             </div>
 
             <div className="admin-actions">
-              <button onClick={() => abrirEditar(p)}>Editar</button>
-              <button className="danger" onClick={() => handleEliminar(p.id_producto)}>
-                Eliminar
+              <button onClick={() => abrirEditar(p)}>
+                <MdEdit /> Editar
+              </button>
+
+              <button
+                className="danger"
+                onClick={() => handleEliminar(p.id_producto)}
+              >
+                <MdDelete /> Eliminar
               </button>
             </div>
+
           </div>
         ))}
       </div>
@@ -233,6 +268,7 @@ export default function HomeAdmin() {
                 Cancelar
               </button>
             </div>
+
           </div>
         </div>
       )}
