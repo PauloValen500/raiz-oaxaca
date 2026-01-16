@@ -18,7 +18,6 @@
 #cliente-container {
   min-height: 100vh;
   background-color: var(--background-color);
-  padding: 40px 30px;
 }
 
 .admin-navbar {
@@ -38,24 +37,23 @@
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 14px;
-  /* separación REAL icono-texto */
+  gap: 16px; /* separación correcta */
   font-size: 1.35rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--primary-color);
 }
 
 .nav-left svg {
-  font-size: 2.2rem;
-  color: var(--secondary);
+  font-size: 2.4rem; /* más presencia */
+  color: var(--secondary-color);
 }
 
 .nav-center {
   text-align: center;
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text);
-  letter-spacing: 0.3px;
+  color: var(--text-color);
+  letter-spacing: 0.4px;
 }
 
 .nav-right {
@@ -87,6 +85,11 @@
 /* ================================
    HEADER
 ================================ */
+.catalog-header,
+.catalog-grid {
+  padding: 40px 30px;
+}
+
 .catalog-header {
   text-align: center;
   margin-bottom: 40px;
@@ -222,12 +225,15 @@
 
 @media (max-width: 768px) {
   .admin-navbar {
-    grid-template-columns: auto 1fr auto;
     padding: 14px 18px;
   }
 
   .nav-left {
     font-size: 1.2rem;
+  }
+
+  .nav-left svg {
+    font-size: 2.1rem;
   }
 
   .nav-center {
@@ -245,5 +251,10 @@
   .logout-btn {
     font-size: 1.3rem;
     padding: 6px;
+  }
+
+  .catalog-header,
+  .catalog-grid {
+    padding: 30px 20px;
   }
 }
